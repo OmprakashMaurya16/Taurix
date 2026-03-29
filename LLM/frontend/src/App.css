@@ -1,0 +1,131 @@
+.app-container {
+  width: 100%;
+  max-width: 1080px;
+  height: min(94vh, 900px);
+  margin: 0 auto;
+  border-radius: 28px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  box-shadow:
+    0 26px 60px rgba(112, 78, 43, 0.18),
+    0 2px 0 rgba(255, 255, 255, 0.65) inset;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.34),
+      rgba(255, 255, 255, 0) 45%
+    ),
+    linear-gradient(0deg, rgba(249, 115, 22, 0.06), rgba(249, 115, 22, 0));
+  pointer-events: none;
+}
+
+.app-header {
+  padding: 20px 26px;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(255, 248, 238, 0.82);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 10;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(140deg, #0f766e 5%, #1f9f96 46%, #f59e0b 100%);
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.35);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  right: -3px;
+  top: -3px;
+  border-radius: 50%;
+  background: #f97316;
+  box-shadow: 0 0 0 4px rgba(255, 249, 239, 0.9);
+}
+
+.brand-copy {
+  min-width: 0;
+}
+
+.brand-copy h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1f2a34;
+}
+
+.brand-copy h1 span {
+  color: #0f766e;
+}
+
+.brand-copy p {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  max-width: 580px;
+}
+
+.status-pill {
+  margin-left: auto;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0f766e;
+  border: 1px solid rgba(15, 118, 110, 0.33);
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.09);
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+@media (max-width: 840px) {
+  .app-container {
+    height: 96vh;
+    border-radius: 20px;
+  }
+
+  .app-header {
+    padding: 16px 16px;
+  }
+
+  .brand-copy h1 {
+    font-size: 1.15rem;
+  }
+
+  .brand-copy p {
+    font-size: 0.72rem;
+  }
+
+  .status-pill {
+    display: none;
+  }
+}

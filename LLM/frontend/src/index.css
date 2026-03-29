@@ -1,0 +1,61 @@
+:root {
+  --bg-dark: #f4eee4;
+  --bg-panel: #fff9ef;
+  --bg-input: #fffdf8;
+  --text-main: #1f2a34;
+  --text-primary: #1f2a34;
+  --text-secondary: #5f6b73;
+  --accent-mint: #0f766e;
+  --accent-blue: #1d4ed8;
+  --accent-indigo: #f97316;
+  --border-color: #e5d7c2;
+  --bubble-user: #f97316;
+  --bubble-ai: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Sora", "Manrope", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(249, 115, 22, 0.24),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(15, 118, 110, 0.22),
+      transparent 30%
+    ),
+    linear-gradient(160deg, #f6efe2 0%, #efe7d9 55%, #f7f0e6 100%);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+}
+
+#root {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f0e6d8;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8c4a7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cf9150;
+}

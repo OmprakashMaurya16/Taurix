@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Financial News Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>📊 Financial News Analyzer</h1>
+
+    <!-- Tabs -->
+    <div>
+      <button onclick="getNews('HDFC')">HDFC</button>
+      <button onclick="getNews('ICICI')">ICICI</button>
+      <button onclick="getNews('L&T')">L&T</button>
+      <button onclick="getNews('JP Morgan')">JP Morgan</button>
+    </div>
+
+    <hr />
+
+    <!-- Manual Input -->
+    <textarea
+      id="newsInput"
+      placeholder="Enter financial news here..."></textarea>
+    <br />
+    <button onclick="analyzeNews()">Analyze</button>
+
+    <div id="result"></div>
+
+    <script>
+      async function analyzeNews() {
+        const text = document.getElementById("newsInput").value;
+
+        const res = await fetch("/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          document.getElementById("result").innerHTML =
+            `<b>${data.error || "Failed to analyze text."}</b>`;
+          return;
+        }
+
+        const rows = (data.breakdown || [])
+          .map(
+            (item) => `
+          <div style="margin: 8px 0; text-align: left; width: 60%; margin-left: auto; margin-right: auto; background: #fff; padding: 10px; border-radius: 8px;">
+            <b>Article ${item.article}</b><br>
+            Preview: ${item.preview}<br>
+            Sentiment: ${item.sentiment}<br>
+            Confidence: ${item.confidence}<br>
+            Recommendation: ${item.recommendation}
+          </div>
+        `,
+          )
+          .join("");
+
+        document.getElementById("result").innerHTML = `
+          <h3>Overall Analysis (${data.model})</h3>
+          Sentiment: ${data.overall.sentiment}<br>
+          Confidence: ${data.overall.confidence}<br>
+          Recommendation: ${data.overall.recommendation}<br>
+          Articles analyzed: ${data.overall.articles_analyzed}
+          <h4>Article-wise Breakdown</h4>
+          ${rows}
+    `;
+      }
+
+      async function getNews(company) {
+        const res = await fetch("/get-news", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ company }),
+        });
+
+        const response = await res.json();
+
+        document.getElementById("newsInput").value = response.combined_text;
+
+        const articleCards = (response.articles || [])
+          .map(
+            (item, idx) => `
+          <div style="margin: 10px 0; text-align: left; width: 60%; margin-left: auto; margin-right: auto; background: #fff; padding: 12px; border-radius: 8px;">
+            <b>${idx + 1}. ${item.headline}</b><br>
+            ${item.preview ? `<div style="margin-top: 6px;">${item.preview}</div>` : ""}
+            <details style="margin-top: 8px;">
+              <summary style="cursor: pointer; color: #0056b3;">Read more</summary>
+              <div style="margin-top: 6px; white-space: pre-wrap;">${item.full_text || "No extra content available."}</div>
+            </details>
+            ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:8px;">Original News Link</a>` : ""}
+          </div>
+        `,
+          )
+          .join("");
+
+        document.getElementById("result").innerHTML = `
+        <h3>${company} News Loaded (${response.model})</h3>
+        ${response.count} articles loaded into input field.<br>
+        Click Analyze to view overall result and article-wise breakdown.
+        <h4>Fetched Articles</h4>
+        ${articleCards}
+    `;
+      }
+    </script>
+  </body>
+</html>

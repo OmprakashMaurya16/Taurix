@@ -1,0 +1,6 @@
+flask
+yfinance
+transformers
+torch
+requests
+numpy

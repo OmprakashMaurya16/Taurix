@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Investment Advisor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>AI Investment Advisor</h1>
+        <p>
+          Analyze stock sentiment, market trend, and suggested allocation in one
+          view.
+        </p>
+      </header>
+
+      <section class="controls" aria-label="analysis controls">
+        <label for="amount">Investment Amount (INR)</label>
+        <div class="control-row">
+          <input
+            type="number"
+            id="amount"
+            placeholder="Enter amount"
+            min="1"
+            step="1" />
+          <select id="sector" aria-label="Sector filter">
+            <option value="ALL">All Sectors</option>
+            {% for sector in sectors %}
+            <option value="{{ sector }}">{{ sector }}</option>
+            {% endfor %}
+          </select>
+          <button id="analyzeBtn" type="button">Analyze</button>
+        </div>
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section
+        id="summary"
+        class="summary hidden"
+        aria-label="portfolio summary"></section>
+      <section
+        id="results"
+        class="cards"
+        aria-label="analysis results"></section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,355 @@
+:root {
+  --bg-start: #f8fafc;
+  --bg-end: #eef2ff;
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --accent: #0ea5e9;
+  --accent-strong: #0284c7;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, #dbeafe 0%, transparent 30%),
+    linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 0.3px;
+}
+
+.hero p {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.controls {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.controls label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+input {
+  flex: 1 1 220px;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.96rem;
+}
+
+select {
+  flex: 1 1 180px;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.96rem;
+  background: #fff;
+  color: var(--text);
+}
+
+input:focus {
+  outline: 2px solid #bae6fd;
+  border-color: #7dd3fc;
+}
+
+select:focus {
+  outline: 2px solid #bae6fd;
+  border-color: #7dd3fc;
+}
+
+button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.status {
+  min-height: 20px;
+  margin: 10px 0 2px;
+  font-size: 0.92rem;
+}
+
+.status.info {
+  color: #0369a1;
+}
+
+.status.success {
+  color: var(--success);
+}
+
+.status.error {
+  color: var(--danger);
+}
+
+.summary {
+  margin-top: 20px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.summary-item {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.summary-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+}
+
+.cards {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+}
+
+.metric {
+  margin: 7px 0;
+  color: #1e293b;
+}
+
+.metric-link {
+  color: #0369a1;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.metric-link:hover {
+  text-decoration: underline;
+}
+
+.muted {
+  color: #64748b;
+}
+
+.score {
+  padding-top: 8px;
+  border-top: 1px dashed #cbd5e1;
+  font-weight: 600;
+}
+
+.reasoning-block {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.reasoning-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.reasoning-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #475569;
+}
+
+.reasoning-list li {
+  margin: 5px 0;
+  line-height: 1.35;
+  font-size: 0.9rem;
+}
+
+.positive {
+  color: var(--success);
+}
+
+.negative {
+  color: var(--danger);
+}
+
+.neutral {
+  color: var(--warning);
+}
+
+.empty {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  padding: 14px;
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+.hidden {
+  display: none;
+}
+
+/* ── Total Risk block ──────────────────────────────────────────── */
+.risk-block {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+}
+
+.risk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.risk-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #334155;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* Badge */
+.risk-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+.risk-low {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.risk-moderate {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.risk-high {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.risk-very-high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Progress bar */
+.risk-bar-wrap {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.risk-bar {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.risk-bar[data-risk="risk-low"] {
+  background: #22c55e;
+}
+
+.risk-bar[data-risk="risk-moderate"] {
+  background: #eab308;
+}
+
+.risk-bar[data-risk="risk-high"] {
+  background: #f97316;
+}
+
+.risk-bar[data-risk="risk-very-high"] {
+  background: #ef4444;
+}
+
+/* Component breakdown list */
+.risk-breakdown {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 16px 12px 32px;
+  }
+
+  .controls {
+    padding: 14px;
+  }
+}
